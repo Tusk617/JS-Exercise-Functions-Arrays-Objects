@@ -43,11 +43,11 @@ function makePersonObject(a, b, c) {
 
   let person = {
     id: a,
-  name: b,
-  email: c,
+    name: b,
+    email: c,
 
   }
-return person;
+  return person;
 }
 
 /**
@@ -84,13 +84,13 @@ function getName(object) {
 function makeSmartPerson(a) {
   let thingObject = {
     name: a,
-  
 
-    sum: function(num1, num2) {
+
+    sum: function (num1, num2) {
       return num1 + num2;
     },
 
-    speak: function() {
+    speak: function () {
       return `Hello, my name is ${thingObject.name}`
     }
   }
@@ -201,7 +201,7 @@ function getCarInfoById(inventory, id) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(inventory) {
-  return inventory.sort(function(a, b) {
+  return inventory.sort(function (a, b) {
     var nameA = a.car_model.toLowerCase();
     var nameB = b.car_model.toLowerCase();
     if (nameA < nameB) {
@@ -225,7 +225,7 @@ function sortCarInventory(inventory) {
 */
 function getModelYears(inventory) {
   let carYears = [];
-  for (let i = 0; i < inventory.length; i++){
+  for (let i = 0; i < inventory.length; i++) {
     let year = inventory[i].car_year;
     carYears.push(year);
   }
@@ -246,11 +246,13 @@ function getModelYears(inventory) {
 */
 function getOlderCars(inventory, maxYear) {
   let olderCars = [];
-  return inventory.sort(function(a){
+  return inventory.sort(function (a) {
     var yearA = a.car_year;
 
-    if (yearA < maxYear){
+    if (yearA < maxYear) {
       olderCars.push(yearA);
+    } else if (yearA > maxYear){
+      return olderCars;
     }
   })
 }
@@ -266,9 +268,22 @@ function getOlderCars(inventory, maxYear) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
-}
+function getGermanCars(inventory) {
+  let gerArray = [];
+  for (let i = 0; i < inventory.length; i++){
+    let make = inventory[i].car_make
+    if (make == 'Audi'){
+      gerArray.push(inventory[i]);
+    } else if (make == 'Mercedes-Benz'){
+      gerArray.push(inventory[i]);
+    } else if (make == 'Volkswagen'){
+      gerArray.push(inventory[i]);
+    } else if (make == 'BMW'){
+      gerArray.push(inventory[i]);
+    }
+  }
+  return gerArray;
+  }
 
 /**
  * ### Challenge refactor to arrow functions
@@ -288,9 +303,15 @@ function getGermanCars(/* code here */) {
  *   return num * 2
  * }
 */
-const sum = null; // code here!
-const addFive = null; // code here!
-const argTimesTwo = null; // code here!
+const sum = (a, b) => {
+  return a+b;
+}; // code here!
+const addFive = (num) => {
+  return num + 5;
+}
+const argTimesTwo = (num) => {
+  return num * 2;
+}
 
 /**
  * ### Challenge `carMaker`
